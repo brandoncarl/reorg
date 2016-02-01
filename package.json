@@ -1,0 +1,15 @@
+{
+  "name": "reorg",
+  "version": "0.1.0",
+  "description": "Simple functional polymorphism",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brandon Carl (http://www.brandoncarl.com/)",
+  "license": "MIT",
+  "repo": {
+    "type": "git",
+    "url": "git://github.com/brandoncarl/reorg"
+  }
+}

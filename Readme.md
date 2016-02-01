@@ -1,0 +1,4 @@
+
+## reorg
+
+Simple functional polymorphism.
