@@ -31,7 +31,7 @@ reorg.checkArg = function checkArg(arg, constraint) {
 
     // If tests are array, get first value
     if (Array.isArray(constraint[0])) {
-      tests = constraint[0];
+      tests = constraint[0].slice(0);
       test = tests.shift();
     } else
       test = constraint[0];
