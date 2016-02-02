@@ -129,7 +129,5 @@ reorg.defaultForType = function defaultForType(type) {
   if ("object" === type)
     return {};
 
-  throw new Error("Defaults must be provided for types that aren't strings, arrays or objects")
-
-}
+  throw new Error("Defaults must be provided unless type is string, array or object")
 
