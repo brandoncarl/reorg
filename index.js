@@ -1,8 +1,26 @@
-/*
- * reorg
- * Copyright(c) 2016 Brandon Carl
- * MIT Licensed.
- */
+/**
+
+  reorg
+  Copyright 2016 Brandon Carl
+  MIT Licensed
+
+**/
+
+
+/**
+
+  Automatically adds type checking and polymorphism to a function.
+
+  @param {Function} fn The function to wrap.
+  @param {...Contraint} constraint Splat of constraints
+  @returns {Function} Returns wrapped function.
+
+  @example
+  var newFn = reorg(function(requiredString, optionalCallback) {
+    optionalCallback(requiredString);
+  }, "string!", ["function", function(next) { next(); }]);
+
+**/
 
 var reorg = module.exports = function reorg() {
 
@@ -18,6 +36,21 @@ var reorg = module.exports = function reorg() {
 };
 
 
+
+/**
+
+  Checks single argument against a constraint. Returns object containing
+  fallback value if pass fails.
+
+  @param {*} arg The argument to check.
+  @param {Constraint} constraint The constraint to check against.
+  @returns {Object} Returns {pass, fallback}
+
+  @example
+  reorg.checkArg(123, "string");
+  // => { pass : false, fallback : "" }
+
+**/
 
 reorg.checkArg = function checkArg(arg, constraint) {
 
@@ -63,6 +96,17 @@ reorg.checkArg = function checkArg(arg, constraint) {
 
 
 
+/**
+
+  Checks an array of arguments against an array of constraints, and optionally
+  truncates the results.
+
+  @param {Array} argv The arguments array to check.
+  @param {Array} constraints An of corresponding constraints.
+  @param {Boolean} [truncate=false] If true, truncates results at longer of argv/constraints.
+
+**/
+
 reorg.args = function args(argv, constraints, truncate) {
 
   var newArgv = [],
@@ -94,6 +138,17 @@ reorg.args = function args(argv, constraints, truncate) {
 };
 
 
+
+/**
+
+  Checks if an argument is of a type. `type` can include primitive types,
+  "array", or a function
+
+  @param {*} arg The value to check
+  @param {String|Function} type A type or predicate to check against.
+  @returns {Boolean} Whether the check passes/fails.
+
+**/
 
 reorg.isType = function isType(arg, type) {
 
@@ -133,9 +188,18 @@ reorg.isType = function isType(arg, type) {
 };
 
 
+
+/**
+
+  Fallback values for types. Throws error if not string, object or array.
+
+  @param {String} type Indicates which type for which we want fallback.
+  @returns {*} A default value.
+
+**/
+
 reorg.defaultForType = function defaultForType(type) {
 
-  // Arrays
   if ("array" === type)
     return [];
 
@@ -147,3 +211,4 @@ reorg.defaultForType = function defaultForType(type) {
 
   throw new Error("Defaults must be provided unless type is string, array or object")
 
+};
