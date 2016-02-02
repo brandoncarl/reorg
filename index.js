@@ -30,8 +30,8 @@ var reorg = module.exports = function reorg() {
   return function() {
     var args = Array.prototype.slice.call(arguments);
     args = reorg.args(args, constraints, false);
-    return fn.apply(null, args)
-  }
+    return fn.apply(null, args);
+  };
 
 };
 
@@ -210,6 +210,6 @@ reorg.defaultForType = function defaultForType(type) {
   if ("object" === type)
     return {};
 
-  throw new Error("Defaults must be provided unless type is string, array or object")
+  throw new Error("Defaults must be provided unless type is string, array or object");
 
 };
