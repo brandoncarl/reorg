@@ -6,7 +6,7 @@ Type checking and polymorphism via fallbacks.
 ## Installation
 
 ```
-npm install reorg
+$ npm install reorg
 ```
 
 
