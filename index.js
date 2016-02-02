@@ -110,9 +110,10 @@ reorg.checkArg = function checkArg(arg, constraint) {
 reorg.args = function args(argv, constraints, truncate) {
 
   var newArgv = [],
-      argv = argv || [],
       result,
       j = 0;
+
+  argv = argv || [];
 
   // Loop through constraints first
   for (var i = 0, n = constraints.length; i < n; i++) {
