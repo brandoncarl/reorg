@@ -57,7 +57,7 @@ reorg.checkArg = function checkArg(arg, constraint) {
   // Use existing value if ok
   if (pass) value = arg;
 
-  return { pass : pass, value : value };
+  return { pass : pass, fallback : value };
 
 };
 
@@ -78,7 +78,7 @@ reorg.args = function args(argv, constraints, truncate) {
     if (result.pass)
       newArgv.push(argv[j++]);
     else
-      newArgv.push(result.value);
+      newArgv.push(result.fallback);
   }
 
   // If any arguments are left, add them
