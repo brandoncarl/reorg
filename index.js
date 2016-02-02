@@ -45,6 +45,7 @@ var reorg = module.exports = function reorg() {
   @param {Array} argv The arguments array to check.
   @param {Array} constraints An of corresponding constraints.
   @param {Boolean} [truncate=false] If true, truncates results at longer of argv/constraints.
+  @returns {Array} Array of reorganized arguments.
 
 **/
 
@@ -88,7 +89,7 @@ reorg.args = function args(argv, constraints, truncate) {
 
   @param {*} arg The argument to check.
   @param {Constraint} constraint The constraint to check against.
-  @returns {Object} Returns {pass, fallback}
+  @returns {Object} Returns {pass, fallback}.
 
   @example
   reorg.checkArg(123, "string");
@@ -145,7 +146,7 @@ reorg.checkArg = function checkArg(arg, constraint) {
   Checks if an argument is of a type. `type` can include primitive types,
   "array", or a function
 
-  @param {*} arg The value to check
+  @param {*} arg The value to check.
   @param {String|Function} type A type or predicate to check against.
   @returns {Boolean} Whether the check passes/fails.
 

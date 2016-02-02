@@ -70,6 +70,8 @@ var newFn = reorg(function(requiredString, optionalCallback) {
 Checks an array of arguments against an array of constraints, and optionally
   truncates the results.
 
+**Returns**: <code>Array</code> - Array of reorganized arguments.
+
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | argv | <code>Array</code> |  | The arguments array to check. |
@@ -81,7 +83,7 @@ Checks an array of arguments against an array of constraints, and optionally
 Checks single argument against a constraint. Returns object containing
   fallback value if pass fails.
 
-**Returns**: <code>Object</code> - Returns {pass, fallback}  
+**Returns**: <code>Object</code> - Returns {pass, fallback}.
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -102,7 +104,7 @@ Checks if an argument is of a type. `type` can include primitive types,
 
 | Param | Type | Description |
 | --- | --- | --- |
-| arg | <code>\*</code> | The value to check |
+| arg | <code>\*</code> | The value to check. |
 | type | <code>String</code> &#124; <code>function</code> | A type or predicate to check against. |
 
 <a name="reorg.defaultForType"></a>
