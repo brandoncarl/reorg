@@ -47,6 +47,12 @@ anotherFn("Hello");
 
 ## API
 
+[reorg](#reorg) ⇒ <code>function</code>  
+[.args(argv, constraints, [truncate])](#reorg.args) => <code>Array</code>  
+[.checkArg(arg, constraint)](#reorg.checkArg) ⇒ <code>Object</code>  
+[.isType(arg, type)](#reorg.isType) ⇒ <code>Boolean</code>  
+[.defaultForType(type)](#reorg.defaultForType) ⇒ <code>\*</code>  
+
 <a name="reorg"></a>
 ### reorg ⇒ <code>function</code>
 Adds type checking and polymorphism to a function.
