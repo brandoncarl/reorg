@@ -9,7 +9,7 @@
 
 /**
 
-  Automatically adds type checking and polymorphism to a function.
+  Adds type checking and polymorphism to a function.
 
   @param {Function} fn The function to wrap.
   @param {...Contraint} constraint Splat of constraints
