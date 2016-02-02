@@ -172,7 +172,7 @@ reorg.isType = function isType(arg, type) {
       isOk = (type === typeof(arg));
 
     if (isRequired && !isOk)
-      throw new Error("Expected argument", arg, "to be of type", type);
+      throw new Error("Expected argument " + arg + " to be of type " + type);
 
     return isOk;
 
