@@ -97,24 +97,40 @@ reorg.args = function args(argv, constraints, truncate) {
 
 reorg.isType = function isType(arg, type) {
 
-  var typeType = typeof(type);
+  var typeofType = typeof(type)
+      isRequired,
+      isOk;
+
+  if ("string" === typeofType) {
+
+    // "!" suffix indicates we should throw an error if type mismatch
+    if ("!" === type[type.length-1]) {
+      isRequired = true;
+      type = type.slice(0, -1);
+    }
+
+    // Arrays
+    if ("array" === type)
+      isOk = Array.isArray(arg);
+    else
+      isOk = (type === typeof(arg));
+
+    if (isRequired && !isOk)
+      throw new Error("Expected argument", arg, "to be of type", type);
+
+    return isOk;
+
+  }
 
   // Ignored variables
   if (type === null || "undefined" === typeofType)
     return true;
 
   // User-defined functions
-  if ("function" === typeType)
+  if ("function" === typeofType)
     return type(arg);
 
-  // Arrays
-  if ("array" === type)
-    return Array.isArray(arg);
-
-  // Everything else
-  return (type === typeof(arg));
-
-}
+};
 
 
 reorg.defaultForType = function defaultForType(type) {
