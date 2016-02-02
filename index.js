@@ -39,6 +39,50 @@ var reorg = module.exports = function reorg() {
 
 /**
 
+  Checks an array of arguments against an array of constraints, and optionally
+  truncates the results.
+
+  @param {Array} argv The arguments array to check.
+  @param {Array} constraints An of corresponding constraints.
+  @param {Boolean} [truncate=false] If true, truncates results at longer of argv/constraints.
+
+**/
+
+reorg.args = function args(argv, constraints, truncate) {
+
+  var newArgv = [],
+      result,
+      j = 0;
+
+  argv = argv || [];
+
+  // Loop through constraints first
+  for (var i = 0, n = constraints.length; i < n; i++) {
+    result = reorg.checkArg(argv[j], constraints[i]);
+
+    // arg passes constraint: push to new argv, get next arg
+    if (result.pass)
+      newArgv.push(argv[j++]);
+    else
+      newArgv.push(result.fallback);
+  }
+
+  // If any arguments are left, add them
+  if (argv.length > j)
+    newArgv = newArgv.concat(argv.slice(j));
+
+  // Truncate results if requested
+  if (truncate)
+    newArgv = newArgv.slice(0, Math.max(argv.length, constraints.length));
+
+  return newArgv;
+
+};
+
+
+
+/**
+
   Checks single argument against a constraint. Returns object containing
   fallback value if pass fails.
 
@@ -91,50 +135,6 @@ reorg.checkArg = function checkArg(arg, constraint) {
   if (pass) value = arg;
 
   return { pass : pass, fallback : value };
-
-};
-
-
-
-/**
-
-  Checks an array of arguments against an array of constraints, and optionally
-  truncates the results.
-
-  @param {Array} argv The arguments array to check.
-  @param {Array} constraints An of corresponding constraints.
-  @param {Boolean} [truncate=false] If true, truncates results at longer of argv/constraints.
-
-**/
-
-reorg.args = function args(argv, constraints, truncate) {
-
-  var newArgv = [],
-      result,
-      j = 0;
-
-  argv = argv || [];
-
-  // Loop through constraints first
-  for (var i = 0, n = constraints.length; i < n; i++) {
-    result = reorg.checkArg(argv[j], constraints[i]);
-
-    // arg passes constraint: push to new argv, get next arg
-    if (result.pass)
-      newArgv.push(argv[j++]);
-    else
-      newArgv.push(result.fallback);
-  }
-
-  // If any arguments are left, add them
-  if (argv.length > j)
-    newArgv = newArgv.concat(argv.slice(j));
-
-  // Truncate results if requested
-  if (truncate)
-    newArgv = newArgv.slice(0, Math.max(argv.length, constraints.length));
-
-  return newArgv;
 
 };
 
