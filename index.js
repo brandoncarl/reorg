@@ -100,7 +100,7 @@ reorg.isType = function isType(arg, type) {
   var typeType = typeof(type);
 
   // Ignored variables
-  if ("req" === type || "required" === type || type === null || "undefined" === typeType)
+  if (type === null || "undefined" === typeofType)
     return true;
 
   // User-defined functions
