@@ -153,7 +153,7 @@ reorg.args = function args(argv, constraints, truncate) {
 
 reorg.isType = function isType(arg, type) {
 
-  var typeofType = typeof(type)
+  var typeofType = typeof(type),
       isRequired,
       isOk;
 
