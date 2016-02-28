@@ -1,6 +1,6 @@
 {
   "name": "reorg",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Simple functional polymorphism",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,8 @@
   },
   "author": "Brandon Carl (http://www.brandoncarl.com/)",
   "license": "MIT",
-  "repo": {
+  "keywords": ["polymorphism", "validation"],
+  "repository": {
     "type": "git",
     "url": "git://github.com/brandoncarl/reorg"
   }
