@@ -129,7 +129,7 @@ reorg.checkArg = function checkArg(arg, constraint) {
     value = reorg.defaultForType(test);
 
   // Run additional tests
-  while (tests && tests.length && !pass)
+  while (tests && tests.length && pass)
     pass = reorg.isType(arg, tests.shift());
 
   // Use existing value if ok
