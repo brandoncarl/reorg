@@ -1,6 +1,96 @@
 
 var reorg = require("..");
 
+describe("#constructor", function() {
+
+  it("handles no constraints gracefully", function() {
+    (function() {
+      reorg(function(x) { return x; });
+    }).should.not.throw();
+  });
+
+  it("wraps a simple function", function() {
+    reorg(function(x) { return x; })(5).should.equal(5);
+  });
+
+  it("handles constraints", function() {
+    (function() {
+      reorg(function(x) { return x; }, "number");
+    }).should.not.throw();
+  });
+
+  it("wraps a more complex function", function() {
+    reorg(function(x) { return x; }, "number")(5).should.equal(5);
+  });
+
+  it("throws an error in provided function", function() {
+    (function() { reorg(function(x) { return x; }, "number!")("Hi") }).should.throw();
+  });
+
+});
+
+
+describe("#args", function() {
+
+  it("handles missing arguments", function() {
+    reorg.args().should.deepEqual([]);
+  });
+
+  it("handles an empty constraints", function() {
+    reorg.args([]).should.deepEqual([]);
+  });
+
+  it("handles basic arrays", function() {
+    reorg.args(["Hi", 5], ["string", "number"]).should.deepEqual(["Hi", 5]);
+  });
+
+  it("reorganizes results", function() {
+    reorg.args(["Hi", 5], ["string", "object", "number"]).should.deepEqual(["Hi", {}, 5]);
+  });
+
+  it("truncates if requested", function() {
+    reorg.args(["Hi", {}, 5], ["string"], true).should.deepEqual(["Hi"]);
+  });
+
+  it("throws errors as necessary", function() {
+    (function() { reorg.args(["Hi", 5], ["number!", "object", "number"]) }).should.throw();
+  });
+
+});
+
+
+describe("#checkArg", function() {
+
+  it("passes on missing constraint", function() {
+    reorg.checkArg(5).should.deepEqual({ pass: true, fallback: 5 });
+  });
+
+  it("handles basic constraints", function() {
+    reorg.checkArg(5, "number").should.deepEqual({ pass: true, fallback: 5 });
+  });
+
+  it("handles array-like constraints", function() {
+    reorg.checkArg(5, ["number"]).should.deepEqual({ pass: true, fallback: 5 });
+  });
+
+  it("handles user-provided fallbacks", function() {
+    reorg.checkArg("Hi", ["number", 5]).should.deepEqual({ pass: false, fallback: 5 });
+  });
+
+  it("fails appropriately", function() {
+    reorg.checkArg(6, "string").should.deepEqual({ pass: false, fallback: "" });
+  });
+
+  it("handles multiple tests", function() {
+    function isNumber(x) { return "number" === typeof x; }
+    function isPositive(x) { return x > 0; }
+    reorg.checkArg(6, [[isNumber, isPositive]]).should.deepEqual({ pass: true, fallback: 6 });
+    reorg.checkArg("Hi", [[isNumber, isPositive], 6]).should.deepEqual({ pass: false, fallback: 6 });
+    reorg.checkArg("Hi", [["string", isPositive], 6]).should.deepEqual({ pass: false, fallback: 6 });
+  });
+
+});
+
 
 describe("#isType", function() {
 
@@ -47,6 +137,10 @@ describe("#isType", function() {
 
   });
 
+  it("throws errors on bad input", function() {
+    (function() { reorg.isType(true, 5)}).should.throw();
+    (function() { reorg.isType(true, "not-a-type")}).should.throw();
+  });
 
 });
 
