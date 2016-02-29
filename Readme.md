@@ -1,5 +1,8 @@
 # reorg
 
+[![Build Status](https://travis-ci.org/brandoncarl/reorg.svg?branch=master)](https://travis-ci.org/brandoncarl/reorg)
+[![Coverage Status](https://coveralls.io/repos/github/brandoncarl/reorg/badge.svg?branch=master)](https://coveralls.io/github/brandoncarl/reorg?branch=master)
+
 Type checking and polymorphism via fallbacks.
 
 
