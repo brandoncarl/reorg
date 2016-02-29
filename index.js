@@ -70,12 +70,8 @@ reorg.args = function args(argv, constraints, truncate) {
   }
 
   // If any arguments are left, add them
-  if (argv.length > j)
+  if (argv.length > j && !truncate)
     newArgv = newArgv.concat(argv.slice(j));
-
-  // Truncate results if requested
-  if (truncate)
-    newArgv = newArgv.slice(0, Math.max(argv.length, constraints.length));
 
   return newArgv;
 
