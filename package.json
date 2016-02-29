@@ -8,7 +8,10 @@
   },
   "author": "Brandon Carl (http://www.brandoncarl.com/)",
   "license": "MIT",
-  "keywords": ["polymorphism", "validation"],
+  "keywords": [
+    "polymorphism",
+    "validation"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/brandoncarl/reorg"
