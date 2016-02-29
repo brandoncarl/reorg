@@ -15,6 +15,15 @@ describe("#isType", function() {
 
   });
 
+  it("returns true if no type provided", function() {
+
+    var vars = [, true, 1, "abc", {}, [], function() {}];
+
+    for (var i = 0, n = vars.length; i < n; i++)
+      reorg.isType(vars[i]).should.equal(true);
+
+  });
+
   it("throws error if requested", function() {
 
     var vars = [, true, 1, "abc", {}, [], function() {}],
