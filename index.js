@@ -144,7 +144,7 @@ reorg.checkArg = function checkArg(arg, constraint) {
 /**
 
   Checks if an argument is of a type. `type` can include primitive types,
-  "array", or a function
+  "array", or a function. Note that "object" indicates a plain object.
 
   @param {*} arg The value to check.
   @param {String|Function} type A type or predicate to check against.
@@ -169,6 +169,8 @@ reorg.isType = function isType(arg, type) {
     // Arrays
     if ("array" === type)
       isOk = Array.isArray(arg);
+    else if ("object" === type)
+      isOk = (type === typeof(arg) && !Array.isArray(arg));
     else
       isOk = (type === typeof(arg));
 
