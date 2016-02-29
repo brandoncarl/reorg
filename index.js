@@ -181,12 +181,15 @@ reorg.isType = function isType(arg, type) {
   }
 
   // Ignored variables
-  if (type === null || "undefined" === typeofType)
+  else if (type === null || "undefined" === typeofType)
     return true;
 
   // User-defined functions
-  if ("function" === typeofType)
+  else if ("function" === typeofType)
     return type(arg);
+
+  else
+    throw new Error("Constraint not recognized");
 
 };
 
