@@ -12,5 +12,9 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/brandoncarl/reorg"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "should": "^8.2.2"
   }
 }
