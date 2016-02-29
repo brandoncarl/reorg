@@ -84,6 +84,14 @@ reorg.args = function args(argv, constraints, truncate) {
   Checks single argument against a constraint. Returns object containing
   fallback value if pass fails.
 
+  The following are valid constraints:
+  * "string"
+  * "string!" (indicates required)
+  * ["string", "Fallback string"]
+  * ["string!", "Fallback string"]
+  * [testFn, fallbackValue]
+  * [["string", testFn1, testFn2], fallbackValue]
+
   @param {*} arg The argument to check.
   @param {Constraint} constraint The constraint to check against.
   @returns {Object} Returns {pass, fallback}.

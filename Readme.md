@@ -90,7 +90,15 @@ Checks an array of arguments against an array of constraints, and optionally
 <a name="reorg.checkArg"></a>
 ### reorg.checkArg(arg, constraint) ⇒ <code>Object</code>
 Checks single argument against a constraint. Returns object containing
-  fallback value if pass fails.
+fallback value if pass fails.
+
+The following are valid constraints:{
+* "string"
+* "string!" (indicates required)
+* ["string", "Fallback string"]
+* ["string!", "Fallback string"]
+* [testFn, fallbackValue]
+* [["string", testFn1, testFn2], fallbackValue]}
 
 **Returns**: <code>Object</code> - Returns {pass, fallback}.
 
