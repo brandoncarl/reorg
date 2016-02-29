@@ -168,8 +168,10 @@ reorg.isType = function isType(arg, type) {
       isOk = Array.isArray(arg);
     else if ("object" === type)
       isOk = (type === typeof(arg) && !Array.isArray(arg));
-    else
+    else if (/^(string|number|symbol|boolean|undefined|function)$/.test(type))
       isOk = (type === typeof(arg));
+    else
+      throw new Error("Unrecognized type " + type);
 
     if (isRequired && !isOk)
       throw new Error("Expected argument " + arg + " to be of type " + type);
