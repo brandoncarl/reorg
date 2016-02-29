@@ -56,6 +56,7 @@ reorg.args = function args(argv, constraints, truncate) {
       j = 0;
 
   argv = argv || [];
+  constraints = constraints || [];
 
   // Loop through constraints first
   for (var i = 0, n = constraints.length; i < n; i++) {
