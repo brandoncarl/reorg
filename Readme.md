@@ -1,7 +1,6 @@
 # reorg
 
 <a href="https://circleci.com/gh/brandoncarl/reorg/tree/master"><img src="https://img.shields.io/circleci/project/brandoncarl/reorg/master.svg" alt="Build Status"></a>
-[![Coverage Status](https://coveralls.io/repos/github/brandoncarl/reorg/badge.svg?branch=master)](https://coveralls.io/github/brandoncarl/reorg?branch=master)
 
 Type checking and polymorphism via fallbacks.
 
