@@ -4,7 +4,7 @@
   "description": "Simple functional polymorphism",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/.bin/istanbul cover _mocha -- -R spec && ./node_modules/.bin/codecov"
   },
   "author": "Brandon Carl (http://www.brandoncarl.com/)",
   "license": "MIT",
