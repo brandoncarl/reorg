@@ -1,6 +1,6 @@
 {
   "name": "reorg",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "Simple functional polymorphism",
   "main": "index.js",
   "scripts": {
